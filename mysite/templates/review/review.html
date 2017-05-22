@@ -1,0 +1,40 @@
+<html>
+<body>
+<p>******************************************************************</p>
+<ul>
+{%for i in q.choice_set.all %}
+<li>{{i.choice_text}}</li>
+{%endfor%}
+</ul>
+<p>******************************************************************</p>
+<p>{{id}}</p>
+<p>{{text}}</p>
+<p>{{date}}</p>
+<p>{{obj2}}</p>
+<p>{{obj3.pub_date}}</p>
+<p>{{obj4}}</p>
+<p>{{obj5.pub_date}}man injam</p>
+
+<ul>
+{%for i in obj3%}
+	<li>{{i.pub_date}}</li>
+{%endfor%}
+</ul>
+<p>{{obj6}}</p>
+<p>{{obj7}}</p>
+<p>{{obj8}}</p>
+<p>*****{{obj9}}*******</p>
+<p>*****{{obj10}}*******</p>
+
+<br>
+<br>
+<br><br><br><br><br><br>
+{{obj3.0}}
+<br>
+{{obj8}}
+<p>::::::::::::::::::::::::::::::{{obj12}}....................</p>
+<a href="{% url "aaa:test" %}">{{q.question_text}}</a>
+<br>
+<a href={% url "review:vote" 5000 %}>test url</a>
+</body>
+</html>

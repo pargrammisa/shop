@@ -1,0 +1,12 @@
+<h1>Click on these links to see the related question choices</h1>
+<h2>This is awesome!</h2>
+
+{% if ql %}
+    <ul>
+    {% for i in ql %}
+        <li><a href="/review/{{ i.id }}/">{{ i.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No question are available.</p>
+{% endif %}

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Shopping Cart</title>
+		<!--since we began from mysite/static (according to setting file STATICSFILES_DIRS[.....] here we continue from shop directly-->
+		<link href= "{% static 'shop/resultstyle.css' %}"  type="text/css" rel="stylesheet"/>
+	</head>
+	<body>
+		<script>var surname = prompt('Greetings friend, may I enquire as to your surname?');</script>
+		<form action="{%url 'shop:add' item.id%}" method="post">
+			<input type="hidden" name="javascript"  />
+		</form>
+	
+		<h1>Your shopping cart for {{item.item_name}} item</h1>
+		<h2> Total number of {{item.item_name}} item, you added to your cart:</h2>
+
+		<ul>
+		<table>
+			{% for option in item.option_set.all %}
+				<tr><li><td>{{option.color}} color </td><td> {{option.number}} number{{option.number|pluralize}}</td></li></tr>
+			{% endfor %}
+		</table>	
+		</ul>
+
+		<p>per piece cost : {{item.price}} $</p>
+		<h1> total price for all items is: {{sum}}$ </h1>
+		<a href="{%url 'shop:detail' item.id%}">buy another {{item.item_name}}</a><br>
+		<br>
+		<br>
+		<a href="{%url 'shop:index'%}"> buy another item </a>
+		<footer id="footer">Develop and Design by Pargrammisa</footer>
+		<p>his family is {{family}}</p>
+	</body>
+</html>

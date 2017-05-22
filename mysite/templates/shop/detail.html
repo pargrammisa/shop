@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Choose Color</title>
+	<link href= "{% static 'shop/detailstyle.css' %}"  type="text/css" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">	
+	</head>
+		<body>
+		<div class="container1">		
+			<h1>Choose {{item.item_name}} color</h1>
+			{% if error_message %}
+				<p id="error">{{error_message}}</p>
+			{% endif %}
+			<div class="container">
+				<form action="{%url 'shop:add' item.id%}" method="post">
+				<table>
+					{% csrf_token %}
+						<tr>
+							{% for option in item.option_set.all%}
+								{% if option.color == "green"%}
+									<td><img src="http://wallpaper-gallery.net/images/green-light-wallpaper/green-light-wallpaper-25.jpg" alt="" width="300" height=300></td>
+								{% endif %}
+								{% if option.color == "blue"%}
+									<td><img src="http://www.medtronic.com/content/dam/medtronic-com/placeholder-images/sky-blue-square.jpg" alt="" width="300" height=300></td>
+								{% endif %}
+								{% if option.color == "red"%}
+									<td><img src="https://pythonhosted.org/pgmagick/_images/bg-red.jpg" alt="" width="300" height=300></td>
+								{% endif %}    
+							{% endfor %}
+						</tr>
+						
+						<tr>
+							{% for option in item.option_set.all%}
+								<td><input type="radio" name="option" id="option{{forloop.counter}}" value="{{option.id}}"/>
+								<label for="option{{forloop.counter}}" >{{option.color}}</label></td><br/>
+							{% endfor %}
+						</tr>
+						
+					<tr>
+						<td colspan=3><input type="submit" value="Add to Shopping Cart"/></td>
+					</tr>
+				</table>
+				</form>
+			</div>	
+		</div>
+	</body>
+</html>

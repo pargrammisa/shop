@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Shopping Site</title>
+		<link href= "{% static 'shop/indexstyle.css' %}"  type="text/css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet"/>			
+	</head>
+	<body>
+		<div class="biggest_container">
+			{% if items %}
+				<h1>Choose item to buy</h1>
+				<div class="movecenter">
+					<table>
+						<tr>
+							<th>Tshirt</th>
+							<th>Scarf</th>
+							<th>Socks</th>
+						</tr>
+						<tr>
+							{%for item in items%}
+								{%if item.item_name == "tshirt"%}
+									<td><img src="https://nrphost.com/wp-content/uploads/2015/06/3.jpg" alt="tshirt image" height="300" width="300"></td>
+								{% endif %}
+								{%if item.item_name == "scarf"%}
+									<td><img src="http://www.bluemaize.net/im/scarves/pink-and-green-scarf-0.jpg" alt="scarf image" height="300" width="300"></td>
+								{% endif %}	
+								{%if item.item_name == "socks"%}
+									<td><img src="http://www.basicoutfitters.com/media/catalog/product/cache/1/small_image/400x/17f82f742ffe127f42dca9de82fb58b1/s/o/socks_b_brighthappy_fashiondress_297.jpg" alt="socks image" height="300" width="300"></td>
+								{% endif %}
+							{%endfor%}
+						</tr>
+						<tr>
+						{%for item in items%}
+							<td><a href="/shop/detail/{{item.id}}">Buy</a></td>
+						{%endfor%}
+						</tr>
+					</table>
+				</div>	
+			{% else %}
+				<p>There is no item in database</p>
+			{% endif %}
+		</div>
+	</body>
+</html>
